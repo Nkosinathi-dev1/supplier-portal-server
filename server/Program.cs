@@ -19,12 +19,17 @@ namespace server
             //    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
             builder.Services.AddAuthorization();
 
+            builder.Services.AddScoped<ISupplierService, SupplierService>();
+
+            //AutoMapper
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
             var app = builder.Build();
 
-            builder.Services.AddScoped<ISupplierService, SupplierService>();
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

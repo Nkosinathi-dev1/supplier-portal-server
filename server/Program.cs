@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Abstractions;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
+using server.Interfaces;
+using server.Services;
 
 namespace server
 {
@@ -22,11 +24,14 @@ namespace server
 
             var app = builder.Build();
 
+            builder.Services.AddScoped<ISupplierService, SupplierService>();
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
             }
+
 
             app.UseHttpsRedirection();
 

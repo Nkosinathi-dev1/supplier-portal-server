@@ -16,4 +16,12 @@
     <PackageReference Include="Microsoft.Identity.Web.UI" Version="3.2.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Endpoints\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Data\" />
+    <Folder Include="Profiles\" />
+  </ItemGroup>
+
 </Project>

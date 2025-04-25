@@ -13,8 +13,8 @@ namespace server
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+            //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
             builder.Services.AddAuthorization();
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -30,9 +30,9 @@ namespace server
 
             app.UseHttpsRedirection();
 
-            app.UseAuthentication();
+            //app.UseAuthentication();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             var scopeRequiredByApi = app.Configuration["AzureAd:Scopes"] ?? "";
             var summaries = new[]
@@ -42,7 +42,7 @@ namespace server
 
             app.MapGet("/weatherforecast", (HttpContext httpContext) =>
             {
-                httpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
+                //httpContext.VerifyUserHasAnyAcceptedScope(scopeRequiredByApi);
 
                 var forecast = Enumerable.Range(1, 5).Select(index =>
                     new WeatherForecast
@@ -55,7 +55,8 @@ namespace server
                 return forecast;
             })
             .WithName("GetWeatherForecast")
-            .RequireAuthorization();
+            .AllowAnonymous();
+            //.RequireAuthorization();
 
             app.Run();
         }

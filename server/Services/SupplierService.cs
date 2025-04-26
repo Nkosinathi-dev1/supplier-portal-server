@@ -11,6 +11,12 @@ namespace server.Services
     {
         private readonly AppDbContext _db;
         private readonly IMapper _mapper;
+
+        public SupplierService(AppDbContext db, IMapper mapper)
+        {
+            _db = db ?? throw new ArgumentNullException(nameof(db));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
         public async Task<SupplierDto> AddSupplierAsync(SupplierDto dto)
         {
             var supplier = _mapper.Map<Supplier>(dto);

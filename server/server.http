@@ -4,3 +4,19 @@ GET {{server_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+POST {{server_HostAddress}}/suppliers
+Content-Type: application/json
+
+{
+  "CompanyName": "Eskom Holdings Limited",
+  "Telephone": "086 0037566"
+}
+
+
+###
+
+GET {{server_HostAddress}}/suppliers/Eskom%20Holdings%20Limited
+Accept: application/json
+
+###

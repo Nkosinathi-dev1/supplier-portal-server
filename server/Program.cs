@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Abstractions;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
+using server.Data;
+using server.Endpoints;
 using server.Interfaces;
 using server.Services;
 
@@ -14,12 +17,20 @@ namespace server
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Get the connection string from appsettings.json
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            // Register your AppDbContext with SQL Server
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(connectionString));
+
             // Add services to the container.
             //builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             //    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
             builder.Services.AddAuthorization();
 
             builder.Services.AddScoped<ISupplierService, SupplierService>();
+
 
             //AutoMapper
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -67,6 +78,9 @@ namespace server
             .WithName("GetWeatherForecast")
             .AllowAnonymous();
             //.RequireAuthorization();
+
+
+            app.MapSupplierEndpoints();
 
             app.Run();
         }

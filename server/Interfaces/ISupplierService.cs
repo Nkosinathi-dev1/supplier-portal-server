@@ -6,5 +6,15 @@ namespace server.Interfaces
     {
         Task<SupplierDto> AddSupplierAsync(SupplierDto dto);
         Task<string?> GetPhoneNumberByCompanyNameAsync(string companyName);
+        Task<List<SupplierDropdownDto>> GetSuppliersForDropdownPaginatedAsync(int page, int pageSize);
+        Task<List<SupplierResponseDto>> GetSuppliersByIdsAsync(List<int> ids);
+
+        Task<SupplierResponseDto?> GetSupplierByIdAsync(int id);
+
+
+
+        //Task<List<SupplierDropdownDto>> GetSuppliersForDropdownPaginatedAsync(int page, int pageSize);
+
+
     }
 }

@@ -32,5 +32,54 @@ namespace server.Services
 
             return supplier?.Telephone;
         }
+
+
+        public async Task<SupplierResponseDto?> GetSupplierByIdAsync(int id)
+        {
+            var supplier = await _db.Suppliers.FirstOrDefaultAsync(s => s.Id == id);
+
+            if (supplier == null) return null;
+
+            return new SupplierResponseDto
+            {
+                CompanyName = supplier.CompanyName,
+                Telephone = supplier.Telephone
+            };
+        }
+
+        public async Task<List<SupplierResponseDto>> GetSuppliersByIdsAsync(List<int> ids)
+        {
+            var suppliers = await _db.Suppliers
+                .Where(s => ids.Contains(s.Id))
+                .ToListAsync();
+
+            return suppliers.Select(s => new SupplierResponseDto
+            {
+                CompanyName = s.CompanyName,
+                Telephone = s.Telephone
+            }).ToList();
+        }
+
+
+
+
+        public async Task<List<SupplierDropdownDto>> GetSuppliersForDropdownPaginatedAsync(int page, int pageSize)
+        {
+            var skip = (page - 1) * pageSize;
+
+            return await _db.Suppliers
+                .OrderBy(s => s.CompanyName)
+                .Skip(skip)
+                .Take(pageSize)
+                .Select(s => new SupplierDropdownDto
+                {
+                    Id = s.Id,
+                    CompanyName = s.CompanyName
+                })
+                .ToListAsync();
+        }
+
+
+
     }
 }

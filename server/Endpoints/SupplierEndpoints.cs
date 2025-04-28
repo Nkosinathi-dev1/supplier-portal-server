@@ -11,6 +11,15 @@ namespace server.Endpoints
                 SupplierDto dto,
                 ISupplierService service) =>
             {
+                //Check if company already exists
+                var existing = await service.GetSupplierByCompanyNameAsync(dto.CompanyName);
+
+                if (existing != null)
+                {
+                    //Company already exists, return Conflict
+                    return Results.Conflict($"Supplier '{dto.CompanyName}' already exists.");
+                }
+
                 var result = await service.AddSupplierAsync(dto);
                 return Results.Created($"/suppliers/{result.CompanyName}", result);
             });

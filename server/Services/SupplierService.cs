@@ -33,6 +33,14 @@ namespace server.Services
             return supplier?.Telephone;
         }
 
+        public async Task<SupplierDto?> GetSupplierByCompanyNameAsync(string companyName)
+        {
+            var supplier = await _db.Suppliers
+                .AsNoTracking()
+                .FirstOrDefaultAsync(s => s.CompanyName.ToLower() == companyName.ToLower());
+
+            return supplier is not null ? _mapper.Map<SupplierDto>(supplier) : null;
+        }
 
         public async Task<SupplierResponseDto?> GetSupplierByIdAsync(int id)
         {

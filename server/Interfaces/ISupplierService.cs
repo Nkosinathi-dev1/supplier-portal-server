@@ -11,6 +11,9 @@ namespace server.Interfaces
 
         Task<SupplierResponseDto?> GetSupplierByIdAsync(int id);
 
+        Task<SupplierDto?> GetSupplierByCompanyNameAsync(string companyName);
+
+
 
 
         //Task<List<SupplierDropdownDto>> GetSuppliersForDropdownPaginatedAsync(int page, int pageSize);

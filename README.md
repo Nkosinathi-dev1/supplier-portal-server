@@ -46,13 +46,13 @@ A lean .NET 9 **Minimal API** that manages suppliers for the Supplier Portal min
 | **A – EF Core** | ✅ | ✅ (via migrations) | ❌ | `dotnet ef database update` |
 | **B – SQL scripts** | ✅ | ✅ | ✅ | See **Option B** panel |
 
-<details>
-<summary>Option B — run SQL scripts manually</summary>
+
+* <summary>Option B — run SQL scripts manually</summary>
 
 #### 📄 Script files
 
 | Purpose | File |
 |---------|------|
-| Create DB & table | [`create_supplier_db.sql`](supplier-portal-server/scripts/create_supplier_db.sql) |
-| Seed sample rows  | [`seed_suppliers.sql`](supplier-portal-server/scripts/seed_suppliers.sql) |
-| One-shot (create + seed) | [`create_supplier_db_and_seed_suppliers.sql`](supplier-portal-server/scripts/create_supplier_db_and_seed_suppliers.sql) |
+| Create DB & table | [`create_supplier_db.sql`](https://github.com/Nkosinathi-dev1/supplier-portal-server/blob/master/create_supplier_db.sql) |
+| Seed sample rows  | [`seed_suppliers.sql`](https://github.com/Nkosinathi-dev1/supplier-portal-server/blob/master/seed_suppliers.sql) |
+| One-shot (create + seed) | [`create_supplier_db_and_seed_suppliers.sql`](https://github.com/Nkosinathi-dev1/supplier-portal-server/blob/master/create_supplier_db_and_seed_suppliers.sql) |

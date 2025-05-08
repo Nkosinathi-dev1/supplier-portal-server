@@ -1,7 +1,7 @@
 # Supplier Portal Server (API)
 
 A lean .NET 9 **Minimal API** that manages suppliers for the Supplier Portal mini-project in the  
-*EnverSoft Software Developer Assessment*.
+*Software Developer Assessment*.
 
 ---
 
